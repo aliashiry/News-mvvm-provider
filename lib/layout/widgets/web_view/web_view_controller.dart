@@ -12,7 +12,6 @@ class WebViewStack extends StatefulWidget {
 
 class _WebViewStackState extends State<WebViewStack> {
   var loadingPercentage = 0;
-
   // REMOVE the controller that was here
 
   @override

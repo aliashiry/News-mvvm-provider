@@ -5,6 +5,7 @@ import 'package:news/layout/widgets/category/category_fragment.dart';
 import 'package:news/layout/widgets/drawer/home_drawer.dart';
 import 'package:news/layout/widgets/tabs/settings.dart';
 import 'package:news/model/category.dart';
+import 'package:news/pages/search_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
@@ -38,12 +39,24 @@ class _HomeScreenState extends State<HomeScreen> {
                       : selectCategory!.title,
               style: Theme.of(context).textTheme.titleLarge,
             ),
+            actions: [
+              // isIconClicked ? SearchBox() :
+              IconButton(
+                onPressed: () {
+                  // isIconClicked = !isIconClicked;
+                  setState(() {
+                    showSearch(context: context, delegate: NewsSearch());
+                  });
+                },
+                icon: Icon(Icons.search),
+              ),
+            ],
           ),
           drawer: Drawer(
             child: HomeDrawer(onSideMenuItemClick: onSideMenuItemClick),
           ),
           body: selectedMenuItem == HomeDrawer.settings
-              ? const SettingsTab()
+              ? SettingsTab()
               : selectCategory == null
                   ? CategoryFragment(onCategoryClick: onCategoryClick)
                   : CategoryDetails(category: selectCategory!),

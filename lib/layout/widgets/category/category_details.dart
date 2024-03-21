@@ -25,7 +25,6 @@ class _HomeScreenState extends State<CategoryDetails> {
     super.initState();
     viewModel.getSource(widget.category.id);
   }
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -44,7 +43,7 @@ class _HomeScreenState extends State<CategoryDetails> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    ApiManager.getNewsBySourceId(widget.category.id);
+                    ApiManager.getNewsBySourceId(sourceId: widget.category.id);
                     setState(() {});
                   },
                   child: const Text('Try again'),
@@ -63,3 +62,4 @@ class _HomeScreenState extends State<CategoryDetails> {
         }));
   }
 }
+

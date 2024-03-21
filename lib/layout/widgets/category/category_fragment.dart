@@ -7,7 +7,6 @@ class CategoryFragment extends StatelessWidget {
   Function onCategoryClick;
 
   CategoryFragment({required this.onCategoryClick});
-
   @override
   Widget build(BuildContext context) {
     return Container(
