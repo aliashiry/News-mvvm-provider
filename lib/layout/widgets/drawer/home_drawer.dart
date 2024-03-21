@@ -5,9 +5,7 @@ class HomeDrawer extends StatelessWidget {
   Function onSideMenuItemClick;
   static const int categories = 1;
   static const int settings = 2;
-
   HomeDrawer({required this.onSideMenuItemClick});
-
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -99,3 +99,4 @@ class News {
     return map;
   }
 }
+

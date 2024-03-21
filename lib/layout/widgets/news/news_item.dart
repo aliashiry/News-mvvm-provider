@@ -2,13 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:news/core/theme/theme.dart';
+import 'package:news/model/NewsDataModel.dart';
 import 'package:news/model/NewsResponse.dart';
 
 class NewsItem extends StatelessWidget {
   final f = DateFormat.jm();
-  News news;
+  News? news;
+  Articles? articles;
 
-  NewsItem({super.key, required this.news});
+  NewsItem({super.key, this.news, this.articles});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class NewsItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: CachedNetworkImage(
-                imageUrl: news.urlToImage ?? ' ',
+                imageUrl: news?.urlToImage ?? ' ',
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     Center(
                         child: CircularProgressIndicator(
@@ -34,7 +36,7 @@ class NewsItem extends StatelessWidget {
               height: 10,
             ),
             Text(
-              news.author ?? '',
+              news?.author ?? '',
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: MyTheme.greyColor,
                   ),
@@ -42,7 +44,7 @@ class NewsItem extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            Text(news.title ?? '',
+            Text(news?.title ?? '',
                 style: Theme.of(context).textTheme.titleSmall),
             const SizedBox(
               height: 8,
@@ -50,7 +52,7 @@ class NewsItem extends StatelessWidget {
 
             //  Text(f.format(new DateTime.fromMillisecondsSinceEpoch((news.publishedAt!*1000) as int))),
             Text(
-              f.format(DateTime.parse(news.publishedAt.toString())),
+              f.format(DateTime.parse(news?.publishedAt.toString() ?? '')),
               textAlign: TextAlign.end,
               style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     // Assuming titleSmall is not available
