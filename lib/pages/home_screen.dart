@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: HomeDrawer(onSideMenuItemClick: onSideMenuItemClick),
           ),
           body: selectedMenuItem == HomeDrawer.settings
-              ? const SettingsTab()
+              ? SettingsTab()
               : selectCategory == null
                   ? CategoryFragment(onCategoryClick: onCategoryClick)
                   : CategoryDetails(category: selectCategory!),
