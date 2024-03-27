@@ -43,7 +43,7 @@ class _HomeScreenState extends State<CategoryDetails> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    ApiManager.getNewsBySourceId(sourceId: widget.category.id);
+                    viewModel.getSource(widget.category.id);
                     setState(() {});
                   },
                   child: const Text('Try again'),
