@@ -110,7 +110,7 @@ class NewsDatails extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
+                      const Text(
                         'View Full Article',
                         textAlign: TextAlign.end,
                       ),
@@ -121,7 +121,7 @@ class NewsDatails extends StatelessWidget {
                               return WebView(news: url ?? '');
                             }));
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.play_arrow_sharp,
                             color: Colors.black,
                           ))

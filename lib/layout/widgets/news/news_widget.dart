@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news/core/api/api_manager.dart';
 import 'package:news/core/theme/theme.dart';
 import 'package:news/layout/widgets/news/news_details.dart';
 import 'package:news/layout/widgets/news/news_item.dart';
@@ -23,7 +22,7 @@ class _NewsWidgetState extends State<NewsWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    viewModel.getNewsBySourceId(widget.source.id ?? '');
+    viewModel.getNews(widget.source.id ?? '');
   }
 
   @override
@@ -44,9 +43,10 @@ class _NewsWidgetState extends State<NewsWidget> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      ApiManager.getNewsBySourceId(
-                          sourceId: widget.source.id ?? "");
-                      setState(() {});
+                      viewModel.getNews(widget.source.id ?? '');
+                      // apiManager.getNewsBySourceId(
+                      //     sourceId: widget.source.id ?? "");
+                      //setState(() {});
                     },
                     child: const Text('Try again'),
                   ),
@@ -59,29 +59,32 @@ class _NewsWidgetState extends State<NewsWidget> {
                 ),
               );
             } else {
-              return ListView.builder(
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => NewsDatails(
-                                        title: viewModel.newsList![index].title,
-                                        description: viewModel
-                                            .newsList![index].description,
-                                        author:
-                                            viewModel.newsList![index].author,
-                                        publishedAt: viewModel
-                                            .newsList![index].publishedAt,
-                                        urlToImage: viewModel
-                                            .newsList![index].urlToImage,
-                                        url: viewModel.newsList![index].url,
-                                      )));
-                        },
-                        child: NewsItem(news: viewModel.newsList![index]));
-                  },
-                  itemCount: viewModel.newsList!.length);
+              return Expanded(
+                child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NewsDatails(
+                                          title:
+                                              viewModel.newsList![index].title,
+                                          description: viewModel
+                                              .newsList![index].description,
+                                          author:
+                                              viewModel.newsList![index].author,
+                                          publishedAt: viewModel
+                                              .newsList![index].publishedAt,
+                                          urlToImage: viewModel
+                                              .newsList![index].urlToImage,
+                                          url: viewModel.newsList![index].url,
+                                        )));
+                          },
+                          child: NewsItem(news: viewModel.newsList![index]));
+                    },
+                    itemCount: viewModel.newsList!.length),
+              );
             }
           },
         ));

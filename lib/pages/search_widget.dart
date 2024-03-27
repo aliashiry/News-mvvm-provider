@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/api/api_manager.dart';
 import 'package:news/layout/widgets/news/news_item.dart';
-import 'package:news/layout/widgets/news/news_widget_view_model.dart';
 import 'package:news/model/NewsResponse.dart';
 
 class NewsSearch extends SearchDelegate {
   late Future<NewsResponse?> getNewsDataModel;
-
+  late ApiManager apiManager;
   NewsSearch() {
-    getNewsDataModel = ApiManager.getNewsBySourceId(searchKeyword: "");
+    apiManager = ApiManager();
+    getNewsDataModel = apiManager.getNewsBySourceId(searchKeyword: "");
   }
 
   @override
@@ -40,7 +40,7 @@ class NewsSearch extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     //  ApiManager.getNewsBySourceId(searchKeyword:query);
     return FutureBuilder(
-      future: ApiManager.getNewsBySourceId(searchKeyword: query),
+      future: apiManager.getNewsBySourceId(searchKeyword: query),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -61,7 +61,7 @@ class NewsSearch extends SearchDelegate {
     );
   }
 
-  NewsWidgetViewModel viewModel = NewsWidgetViewModel();
+  //NewsWidgetViewModel viewModel = NewsWidgetViewModel();
 
   @override
   Widget buildSuggestions(BuildContext context) {
