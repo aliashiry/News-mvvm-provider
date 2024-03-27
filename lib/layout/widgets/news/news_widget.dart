@@ -44,9 +44,6 @@ class _NewsWidgetState extends State<NewsWidget> {
                   ElevatedButton(
                     onPressed: () {
                       viewModel.getNews(widget.source.id ?? '');
-                      // apiManager.getNewsBySourceId(
-                      //     sourceId: widget.source.id ?? "");
-                      //setState(() {});
                     },
                     child: const Text('Try again'),
                   ),
